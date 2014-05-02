@@ -41,6 +41,6 @@ capture = lt space <'capture'> space var space rt block lt space <'endcapture'> 
 
 (* todo: case, cycle, layout, raw, increment, decrement, unless, tablerow, forloop *)
 
-custom = lt space #"[a-z]+" custom-opts space rt (block lt space <'end' #"[a-z]+"> space rt)?
+custom = lt space #"[a-z]+" custom-opts space rt block lt space <'end' #"[a-z]+"> space rt
 
 custom-opts = (space (var / literal))*
