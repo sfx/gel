@@ -117,6 +117,12 @@
                    (cons (next capture-env)))]
       env2)))
 
+(defmethod emit-tag :custom
+  [ast env buf]
+  (if-let [f (lookup env [:gel.core/custom-tags (:custom-type ast)])]
+    (f ast env buf)
+    env)) ;; todo: error?
+
 (defn emit
   [ast env buf]
   (emit-node ast (list env) buf))

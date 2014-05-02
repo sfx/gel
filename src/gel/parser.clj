@@ -3,7 +3,7 @@
             [instaparse.core :as insta]
             [instaparse.failure :as instf]))
 
-(defn tag
+(defn ^:private tag
   [tag style kv]
   (assoc kv
     :type :tag
@@ -86,6 +86,17 @@
    :capture
    (fn [var body]
      (tag :capture :block {:var var :body body}))
+
+   :custom
+   (fn
+     ([name opts]
+        (tag :custom :inline {:opts opts :custom-type (keyword name)}))
+     ([name opts body]
+        (tag :custom :block {:opts opts :custom-type (keyword name) :body body})))
+
+   :custom-opts
+   (fn [& opts]
+     (vec opts))
 
    })
 

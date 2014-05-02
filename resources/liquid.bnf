@@ -24,7 +24,7 @@ block = (tag / output / content)*
 
 content = #"((?!\{\{|\{%)(.|\n))++"
 
-tag = include / comment / if / for / capture
+tag = include / comment / if / for / capture / custom
 
 output = lo space? dotted-var (space <'|'> space var)* space? ro
 
@@ -40,3 +40,7 @@ if = lt space <'if'> space dotted-var space (op space (dotted-var | literal) spa
 capture = lt space <'capture'> space var space rt block lt space <'endcapture'> space rt
 
 (* todo: case, cycle, layout, raw, increment, decrement, unless, tablerow, forloop *)
+
+custom = lt space #"[a-z]+" custom-opts space rt (block lt space <'end' #"[a-z]+"> space rt)?
+
+custom-opts = (space (var / literal))*
