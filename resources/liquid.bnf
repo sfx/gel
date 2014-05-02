@@ -1,0 +1,42 @@
+document = block
+
+<lt> = <'{%'>
+
+<rt> = <'%}'>
+
+<lo> = <'{{'>
+
+<ro> = <'}}'>
+
+dotted-var = var (<'.'> var)*
+
+var = #"[A-Za-z_\-][A-Za-z0-9_\-]*"
+
+literal = <'\''> #"[A-Za-z0-9\.\-_]*" <'\''>
+
+op = '==' | '!=' | '>' | '<' | '>=' | '<=' | 'or' | 'and' | 'contains'
+
+<space> = <' '>
+
+param = var <'='> literal
+
+block = (tag / output / content)*
+
+content = #"((?!\{\{|\{%)(.|\n))++"
+
+tag = include / comment / if / for / capture
+
+output = lo space? dotted-var (space <'|'> space var)* space? ro
+
+include = lt space <'include'> space (literal | #"[\w\.\-]*" | output) (space <'with'> space literal)? (space param)* space rt
+
+comment = lt space <'comment'> space rt block lt space <'endcomment'> space rt
+
+for = lt space <'for'> space var space <'in'> space dotted-var space rt block lt space <'endfor'> space rt
+
+if = lt space <'if'> space dotted-var space (op space (dotted-var | literal) space)? rt block lt space <'endif'> space rt
+(* todo: else if and else *)
+
+capture = lt space <'capture'> space var space rt block lt space <'endcapture'> space rt
+
+(* todo: case, cycle, layout, raw, increment, decrement, unless, tablerow, forloop *)
