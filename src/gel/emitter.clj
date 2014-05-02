@@ -97,7 +97,7 @@
 (defmethod emit-tag :include
   [ast env buf]
   (let [incl-env (if (contains? ast :params)
-                   (cons {:include (:parms ast)} env)
+                   (cons {:include (:params ast)} env)
                    (cons {} env))
         file-name (when-let [file-name (:file-name ast)]
                     (if (string? file-name)
