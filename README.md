@@ -2,6 +2,12 @@
 
 A Clojure implementation of the [Liquid](https://github.com/shopify/liquid) template engine.
 
+## Release
+
+```
+[gel "0.1.0-SNAPSHOT"]
+```
+
 ## Usage
 
 ```clojure
