@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sfx/gel.svg?branch=travis-ci)](https://travis-ci.org/sfx/gel)
+
 # Gel
 
 A Clojure implementation of the [Liquid](https://github.com/shopify/liquid) template engine.
