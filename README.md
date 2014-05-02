@@ -7,7 +7,7 @@ A Clojure implementation of the [Liquid](https://github.com/shopify/liquid) temp
 ```clojure
 (require '[gel.core :as gel])
 
-(gel/redner "Hi {{ name }}!" {:name "Sophie"})
+(gel/render "Hi {{ name }}!" {:name "Sophie"})
 ;=> "Hi Sophie!"
 ```
 
